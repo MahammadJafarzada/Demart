@@ -8,9 +8,9 @@ import { useSelector, useDispatch } from "react-redux";
 import SearchInput from "../../components/SearchInput";
 import { RootState } from "../../redux/store";
 import { addToCart } from "../../redux/reducers/cartSlice";
-import { RootStackParamList } from "../../../types";
 import { Ionicons } from "@expo/vector-icons";
 import { Product } from "../../utils/ProductType";
+import { RootStackParamList } from "../../../types";
 
 
 

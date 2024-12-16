@@ -3,7 +3,7 @@ import React, { useState, useCallback } from 'react';
 import tw from 'twrnc';
 import CustomButton from '../../components/CustomButton';
 import InputField from '../../components/InputFields';
-import { RootStackParamList } from '../../../types';
+import { RootStackParamList } from '../../../types.ts';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 const Register = () => {
