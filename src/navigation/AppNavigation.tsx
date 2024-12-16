@@ -13,7 +13,7 @@ const AppNavigation: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator id={undefined} initialRouteName="Home">
+      <Stack.Navigator id={undefined} initialRouteName="Login">
         <Stack.Screen
           name="Login"
           component={Login}

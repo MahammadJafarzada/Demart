@@ -68,7 +68,7 @@ const Home = () => {
         </TouchableOpacity>
         {categories.map((category, index) => (
           <TouchableOpacity
-            key={category.id || `category-${index}`} // Ensures unique keys
+            key={category.id || `category-${index}`} 
             onPress={() => setSelectedCategory(category.id)}
             style={tw`px-4 py-2 rounded-full ${
               selectedCategory === category.id ? "bg-blue-500" : "bg-gray-200"

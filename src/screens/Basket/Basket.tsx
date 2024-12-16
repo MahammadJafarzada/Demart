@@ -12,7 +12,15 @@ const Basket = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
 
-  const renderCartItem = ({ item }: { item: Product }) => (
+  if (cart.length === 0) {
+    return (
+      <SafeAreaView style={tw`flex-1 justify-center items-center`}>
+        <Text style={tw`text-gray-500`}>Your basket is empty</Text>
+      </SafeAreaView>
+    );
+  }
+
+  const renderCartItem = ({ item }: { item: Product & { quantity: number } }) => (
     <View
       style={tw`flex-1 justify-around bg-gray-100 rounded-lg shadow-md p-4 mb-4`}
     >
@@ -25,6 +33,7 @@ const Basket = () => {
         <Text style={tw`text-lg text-green-600 font-semibold`}>
           ${item.price}
         </Text>
+        <Text style={tw`text-sm text-gray-500`}>Quantity: {item.quantity}</Text>
       </View>
       <TouchableOpacity onPress={() => dispatch(removeFromCart(item.id))}>
         <AntDesign name="delete" size={24} color="red" />
@@ -38,7 +47,7 @@ const Basket = () => {
       <FlatList
         data={cart}
         renderItem={renderCartItem}
-        keyExtractor={(item) => item.id.toString()} 
+        keyExtractor={(item, index) => `${item.id}-${index}`}
       />
     </SafeAreaView>
   );
