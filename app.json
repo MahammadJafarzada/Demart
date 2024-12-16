@@ -16,16 +16,29 @@
       "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mahammadjafar.Demart"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-build-properties"
-    ]
+      ["expo-build-properties",{
+        "ios" : {
+          "useFrameworks": "static"
+        }
+      }],
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "2d66074c-23bf-419b-a232-4678a77e85c0"
+      }
+    }
   }
 }

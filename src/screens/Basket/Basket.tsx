@@ -4,9 +4,9 @@ import tw from "twrnc";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector, useDispatch } from "react-redux";
-import { Product } from "../../layout/Home/Home";
 import { RootState } from "../../redux/store";
 import { removeFromCart } from "../../redux/reducers/cartSlice";
+import { Product } from "../../utils/ProductType";
 
 const Basket = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
@@ -14,7 +14,6 @@ const Basket = () => {
 
   const renderCartItem = ({ item }: { item: Product }) => (
     <View
-      key={item.id}
       style={tw`flex-1 justify-around bg-gray-100 rounded-lg shadow-md p-4 mb-4`}
     >
       <Image
@@ -34,12 +33,12 @@ const Basket = () => {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1, padding: 20 }}>
-      <Text style={{ fontSize: 24, fontWeight: "bold" }}>Your Basket</Text>
+    <SafeAreaView style={tw`flex-1 p-4`}>
+      <Text style={tw`text-xl font-bold mb-4`}>Your Basket</Text>
       <FlatList
         data={cart}
         renderItem={renderCartItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id.toString()} 
       />
     </SafeAreaView>
   );

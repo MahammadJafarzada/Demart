@@ -12,12 +12,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { Product } from "../../utils/ProductType";
 import { RootStackParamList } from "../../../types";
 
-
-
 const Home = () => {
   const [search, setSearch] = useState<string>("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
-  const [selectedCategory,setSelectedCategory ] = useState<number | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const cart = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -53,11 +51,10 @@ const Home = () => {
           Keyboard.dismiss();
         }}
       />
-       <ScrollView
+      <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         style={tw`flex-row mb-4`}
-        contentContainerStyle={tw`space-x-4`}
       >
         <TouchableOpacity
           onPress={() => setSelectedCategory(null)}
@@ -69,9 +66,9 @@ const Home = () => {
             All
           </Text>
         </TouchableOpacity>
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <TouchableOpacity
-            key={category.id}
+            key={category.id || `category-${index}`} // Ensures unique keys
             onPress={() => setSelectedCategory(category.id)}
             style={tw`px-4 py-2 rounded-full ${
               selectedCategory === category.id ? "bg-blue-500" : "bg-gray-200"
@@ -91,7 +88,6 @@ const Home = () => {
         data={filteredProducts}
         renderItem={({ item }) => (
           <TouchableOpacity
-            key={item.id}
             style={tw`flex-1 justify-around bg-gray-100 rounded-lg shadow-md p-4 mb-4`}
           >
             <View>
@@ -102,7 +98,7 @@ const Home = () => {
               <TouchableOpacity
                 style={[
                   tw`absolute top-2 right-2 p-2 rounded-full bg-white`,
-                  { elevation: 5 }, 
+                  { elevation: 5 },
                 ]}
               >
                 <Ionicons name="heart-outline" size={24} color="red" />
@@ -124,7 +120,7 @@ const Home = () => {
             </TouchableOpacity>
           </TouchableOpacity>
         )}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id.toString()} 
         numColumns={2}
         contentContainerStyle={tw`pb-20`}
         columnWrapperStyle={tw`justify-between`}

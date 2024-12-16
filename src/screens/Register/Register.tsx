@@ -3,8 +3,8 @@ import React, { useState, useCallback } from 'react';
 import tw from 'twrnc';
 import CustomButton from '../../components/CustomButton';
 import InputField from '../../components/InputFields';
-import { RootStackParamList } from '../../../types.ts';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../../types';
 
 const Register = () => {
   const [usernameInput, setUsernameInput] = useState('');
