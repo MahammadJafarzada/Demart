@@ -3,31 +3,39 @@ export const categories = [
     id: 1,
     name: "Coffee Beans",
     description: "A variety of coffee beans sourced from around the world.",
+    image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
   },
   {
     id: 2,
     name: "Coffee Equipment",
     description: "Tools and machines to brew the perfect coffee.",
+    image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
+
   },
   {
     id: 3,
     name: "Accessories",
     description: "Coffee mugs, tumblers, and creative tools for coffee lovers.",
+    image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
+
   },
   {
     id: 4,
     name: "Instant Coffee",
     description: "Quick and easy coffee options for busy mornings.",
+    image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
   },
   {
     id: 5,
     name: "Specialty Drinks & Snacks",
     description: "Syrups, creamers, and snacks to pair with your coffee.",
+    image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
   },
   {
     id: 6,
     name: "Subscriptions",
     description: "Monthly coffee delivery straight to your door.",
+    image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
   },
 ];
 

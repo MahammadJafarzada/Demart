@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, FlatList, Keyboard, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  Keyboard,
+} from "react-native";
 import tw from "twrnc";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSelector, useDispatch } from "react-redux";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { categories, products } from "../../utils/ProductsAPI";
-import { useSelector, useDispatch } from "react-redux";
 import SearchInput from "../../components/SearchInput";
 import { RootState } from "../../redux/store";
 import { addToCart } from "../../redux/reducers/cartSlice";
 import { Ionicons } from "@expo/vector-icons";
 import { Product } from "../../utils/ProductType";
 import { RootStackParamList } from "../../../types";
+import CategoryList from "../../components/CategoryList";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home = () => {
   const [search, setSearch] = useState<string>("");
@@ -28,7 +36,9 @@ const Home = () => {
     let filtered = products;
 
     if (selectedCategory !== null) {
-      filtered = filtered.filter((product) => product.category_id === selectedCategory);
+      filtered = filtered.filter(
+        (product) => product.category_id === selectedCategory
+      );
     }
 
     if (search.trim() !== "") {
@@ -51,39 +61,11 @@ const Home = () => {
           Keyboard.dismiss();
         }}
       />
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={tw`flex-row mb-4`}
-      >
-        <TouchableOpacity
-          onPress={() => setSelectedCategory(null)}
-          style={tw`px-4 py-2 rounded-full ${
-            selectedCategory === null ? "bg-blue-500" : "bg-gray-200"
-          }`}
-        >
-          <Text style={tw`text-sm ${selectedCategory === null ? "text-white" : "text-black"}`}>
-            All
-          </Text>
-        </TouchableOpacity>
-        {categories.map((category, index) => (
-          <TouchableOpacity
-            key={category.id || `category-${index}`} 
-            onPress={() => setSelectedCategory(category.id)}
-            style={tw`px-4 py-2 rounded-full ${
-              selectedCategory === category.id ? "bg-blue-500" : "bg-gray-200"
-            }`}
-          >
-            <Text
-              style={tw`text-sm ${
-                selectedCategory === category.id ? "text-white" : "text-black"
-              }`}
-            >
-              {category.name}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      <CategoryList
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
       <FlatList
         data={filteredProducts}
         renderItem={({ item }) => (
@@ -92,7 +74,10 @@ const Home = () => {
           >
             <View>
               <Image
-                style={[tw`h-40 rounded-lg mb-4 self-center`, { width: "100%" }]}
+                style={[
+                  tw`h-40 rounded-lg mb-4 self-center`,
+                  { width: "100%" },
+                ]}
                 source={{ uri: `${item.images[0]}` }}
               />
               <TouchableOpacity
@@ -105,7 +90,9 @@ const Home = () => {
               </TouchableOpacity>
             </View>
             <View style={tw`items-center mb-4`}>
-              <Text style={tw`text-lg font-bold text-gray-800`}>{item.title}</Text>
+              <Text style={tw`text-lg font-bold text-gray-800`}>
+                {item.title}
+              </Text>
               <Text style={tw`text-lg text-green-600 font-semibold`}>
                 ${item.price}
               </Text>
@@ -120,19 +107,11 @@ const Home = () => {
             </TouchableOpacity>
           </TouchableOpacity>
         )}
-        keyExtractor={(item) => item.id.toString()} 
+        keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         contentContainerStyle={tw`pb-20`}
         columnWrapperStyle={tw`justify-between`}
       />
-      <View style={tw`flex-row justify-center items-center py-4`}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Basket")}
-          style={tw`bg-red-500 rounded-full px-6 py-3`}
-        >
-          <Text style={tw`text-white font-bold`}>Basket: {cart.length}</Text>
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
