@@ -9,13 +9,19 @@ import Basket from "../layout/Basket/Basket";
 import ProductDetails from "../components/ProductDetails";
 import BottomMenu from "./BottomMenu";
 import Wishlist from "../layout/Wishlist/Wishlist";
+import OnBoardingScreen from "../screens/OnBoarding/OnBoardingScreen";
 
 const AppNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator id={undefined} initialRouteName="Login">
+      <Stack.Navigator id={undefined} initialRouteName="OnBoardingScreen">
+      <Stack.Screen
+          name="OnBoardingScreen"
+          component={OnBoardingScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Login"
           component={Login}

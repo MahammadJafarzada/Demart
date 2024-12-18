@@ -45,11 +45,11 @@ const CategoryList: React.FC<CategoryFilterProps> = ({
               selectedCategory === category.id ? "border-2 border-blue-500" : ""
             }`}
           >
-            <Image
-              source={require("../../assets/clothes.png")}
-              style={tw`w-full h-full`}
-              resizeMode="cover"
-            />
+        <Image
+            source={require("../../assets/clothes.png")}
+            style={tw`w-full h-full`}
+            resizeMode="cover"
+        />
           </View>
           <Text
             style={tw`mt-2 text-sm font-semibold ${
