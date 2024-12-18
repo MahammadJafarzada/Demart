@@ -6,6 +6,7 @@ export type RootStackParamList = {
     Home: undefined;
     ProductDetails:undefined;
     Basket: undefined;
+    Wishlist: undefined;
 }
 export type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 export type BasketScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Basket'>;

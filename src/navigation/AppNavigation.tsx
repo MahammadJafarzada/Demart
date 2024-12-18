@@ -5,8 +5,10 @@ import Login from "../screens/Login/Login";
 import { RootStackParamList } from "../../types";
 import Register from "../screens/Register/Register";
 import Home from "../layout/Home/Home";
-import Basket from "../screens/Basket/Basket";
+import Basket from "../layout/Basket/Basket";
 import ProductDetails from "../components/ProductDetails";
+import BottomMenu from "./BottomMenu";
+import Wishlist from "../layout/Wishlist/Wishlist";
 
 const AppNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -26,17 +28,12 @@ const AppNavigation: React.FC = () => {
         />
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={BottomMenu}
           options={{ headerShown: false }}
         />
         <Stack.Screen
           name="ProductDetails"
           component={ProductDetails}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Basket"
-          component={Basket}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
