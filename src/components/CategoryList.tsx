@@ -19,6 +19,21 @@ const CategoryList: React.FC<CategoryFilterProps> = ({
       showsHorizontalScrollIndicator={false}
       style={tw`flex-row py-2`}
     >
+        <TouchableOpacity
+            onPress={() => setSelectedCategory(null)}
+            style={tw`items-center  mx-2`}
+        >
+              <Image
+                source={require("../../assets/clothes.png")} 
+                style={tw`w-20 h-20`}
+                resizeMode="cover"
+            />
+            <Text
+            style={tw`mt-2 text-sm font-semibold`}
+            >
+            All
+            </Text>
+        </TouchableOpacity>
       {categories.map((category, index) => (
         <TouchableOpacity
           key={category.id || `category-${index}`}
@@ -31,7 +46,7 @@ const CategoryList: React.FC<CategoryFilterProps> = ({
             }`}
           >
             <Image
-              src={category.image?.[0]}
+              source={require("../../assets/clothes.png")}
               style={tw`w-full h-full`}
               resizeMode="cover"
             />

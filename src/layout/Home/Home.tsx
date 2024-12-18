@@ -70,12 +70,12 @@ const Home = () => {
         data={filteredProducts}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={tw`flex-1 justify-around bg-gray-100 rounded-lg shadow-md p-4 mb-4`}
+            style={tw`flex-1  bg-white rounded-lg shadow-md`}
           >
             <View>
               <Image
                 style={[
-                  tw`h-40 rounded-lg mb-4 self-center`,
+                  tw`h-40 rounded-lg  self-center`,
                   { width: "100%" },
                 ]}
                 source={{ uri: `${item.images[0]}` }}

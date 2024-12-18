@@ -3,7 +3,7 @@ export const categories = [
     id: 1,
     name: "Coffee Beans",
     description: "A variety of coffee beans sourced from around the world.",
-    image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
+    image:["https://en.wikipedia.org/wiki/Coffee#/media/File:Latte_and_dark_coffee.jpg"],
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ export const categories = [
   },
   {
     id: 5,
-    name: "Specialty Drinks & Snacks",
+    name: "Drinks & Snacks",
     description: "Syrups, creamers, and snacks to pair with your coffee.",
     image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
   },
