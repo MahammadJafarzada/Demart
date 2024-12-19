@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Login from "../screens/Login/Login";
@@ -10,18 +10,39 @@ import ProductDetails from "../components/ProductDetails";
 import BottomMenu from "./BottomMenu";
 import Wishlist from "../layout/Wishlist/Wishlist";
 import OnBoardingScreen from "../screens/OnBoarding/OnBoardingScreen";
+import { getItem } from "../utils/asyncStorage";
 
 const AppNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
 
+  const [showOnboarding, setShowOnboarding] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    checkIfAlreadyOnboarded();
+  }, []);
+
+  const checkIfAlreadyOnboarded = async () => {
+    const onboarded = await getItem("onboarded");
+    setShowOnboarding(onboarded === "1" ? false : true);
+  };
+
+  if (showOnboarding === null) {
+    return null; 
+  }
+
   return (
     <NavigationContainer>
-      <Stack.Navigator id={undefined} initialRouteName="OnBoardingScreen">
-      <Stack.Screen
-          name="OnBoardingScreen"
-          component={OnBoardingScreen}
-          options={{ headerShown: false }}
-        />
+      <Stack.Navigator
+        id={undefined}
+        initialRouteName={showOnboarding ? "OnBoardingScreen" : "Login"}
+      >
+        {showOnboarding && (
+          <Stack.Screen
+            name="OnBoardingScreen"
+            component={OnBoardingScreen}
+            options={{ headerShown: false }}
+          />
+        )}
         <Stack.Screen
           name="Login"
           component={Login}
@@ -33,7 +54,7 @@ const AppNavigation: React.FC = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Home"
+          name="Main"
           component={BottomMenu}
           options={{ headerShown: false }}
         />

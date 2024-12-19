@@ -4,11 +4,11 @@ export type RootStackParamList = {
     OnBoardingScreen: undefined;
     Login: undefined;
     Register: undefined;
-    Home: undefined;
+    Main: undefined;
     ProductDetails:undefined;
     Basket: undefined;
     Wishlist: undefined;
 }
 export type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 export type BasketScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Basket'>;
-export type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
+export type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Main'>;
