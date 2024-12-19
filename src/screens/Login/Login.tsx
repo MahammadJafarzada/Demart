@@ -15,7 +15,7 @@ const Login = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const handleLogin = () =>{
-    navigation.navigate('Home')
+    navigation.navigate('Main')
   }
   const togglePasswordVisibility = useCallback(() => {
     setIsPasswordVisible((prev) => !prev);

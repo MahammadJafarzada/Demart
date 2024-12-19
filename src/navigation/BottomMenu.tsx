@@ -7,10 +7,14 @@ import tw from "twrnc";
 import Home from "../layout/Home/Home";
 import Basket from "../layout/Basket/Basket";
 import Wishlist from "../layout/Wishlist/Wishlist";
+import { RootState } from "../redux/store";
+import { useSelector } from "react-redux";
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomMenu() {
+  const cart = useSelector((state: RootState) => state.cart.items);
+
   return (
     <Tab.Navigator
       id={undefined}
@@ -40,7 +44,11 @@ export default function BottomMenu() {
       })}
     >
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Basket" component={Basket} />
+      <Tab.Screen name="Basket" component={Basket} 
+      options={{
+        tabBarBadge: cart.length > 0 ? cart.length : undefined,
+        tabBarBadgeStyle: { backgroundColor: "red", color: "white" },
+      }}/>
       <Tab.Screen name="Wishlist" component={Wishlist} />
     </Tab.Navigator>
   );

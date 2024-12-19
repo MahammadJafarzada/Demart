@@ -69,15 +69,10 @@ const Home = () => {
       <FlatList
         data={filteredProducts}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            style={tw`flex-1  bg-white rounded-lg shadow-md`}
-          >
+          <TouchableOpacity style={tw`flex-1  bg-white rounded-lg shadow-md`}>
             <View>
               <Image
-                style={[
-                  tw`h-40 rounded-lg  self-center`,
-                  { width: "100%" },
-                ]}
+                style={[tw`h-40 rounded-lg  self-center`, { width: "100%" }]}
                 source={{ uri: `${item.images[0]}` }}
               />
               <TouchableOpacity
