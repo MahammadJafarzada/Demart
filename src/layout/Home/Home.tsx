@@ -19,6 +19,8 @@ import { Product } from "../../utils/ProductType";
 import { RootStackParamList } from "../../../types";
 import CategoryList from "../../components/CategoryList";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { addToWishlist, removeFromWishlist } from "../../redux/reducers/wishlistSlice";
+import ProductCart from "../../components/ProductCart";
 
 const Home = () => {
   const [search, setSearch] = useState<string>("");
@@ -27,10 +29,9 @@ const Home = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const wishlist = useSelector((state: RootState) => state.wishlist.items);
 
-  const handleAddToCart = (product: Product) => {
-    dispatch(addToCart(product));
-  };
+
 
   useEffect(() => {
     let filtered = products;
@@ -68,44 +69,11 @@ const Home = () => {
       />
       <FlatList
         data={filteredProducts}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={tw`flex-1  bg-white rounded-lg shadow-md`}>
-            <View>
-              <Image
-                style={[tw`h-40 rounded-lg  self-center`, { width: "100%" }]}
-                source={{ uri: `${item.images[0]}` }}
-              />
-              <TouchableOpacity
-                style={[
-                  tw`absolute top-2 right-2 p-2 rounded-full bg-white`,
-                  { elevation: 5 },
-                ]}
-              >
-                <Ionicons name="heart-outline" size={24} color="red" />
-              </TouchableOpacity>
-            </View>
-            <View style={tw`items-center mb-4`}>
-              <Text style={tw`text-lg font-bold text-gray-800`}>
-                {item.title}
-              </Text>
-              <Text style={tw`text-lg text-green-600 font-semibold`}>
-                ${item.price}
-              </Text>
-            </View>
-            <TouchableOpacity
-              style={tw`bg-blue-500 px-6 py-3 rounded-lg`}
-              onPress={() => handleAddToCart(item)}
-            >
-              <Text style={tw`text-white text-center font-semibold`}>
-                Add to Cart
-              </Text>
-            </TouchableOpacity>
-          </TouchableOpacity>
-        )}
+        renderItem={({ item }) => <ProductCart product={item} showQuantity={false}  showRemoveFromCart = {false} showHeart = {true} showAddToCart = {true}/>}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         contentContainerStyle={tw`pb-20`}
-        columnWrapperStyle={tw`justify-between`}
+        columnWrapperStyle={tw`justify-evenly`}
       />
     </SafeAreaView>
   );

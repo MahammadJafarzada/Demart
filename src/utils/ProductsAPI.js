@@ -1,33 +1,33 @@
 export const categories = [
   {
     id: 1,
-    name: "Coffee Beans",
+    name: "Beauty",
     description: "A variety of coffee beans sourced from around the world.",
     image:["https://en.wikipedia.org/wiki/Coffee#/media/File:Latte_and_dark_coffee.jpg"],
   },
   {
     id: 2,
-    name: "Coffee Equipment",
+    name: "Fashion",
     description: "Tools and machines to brew the perfect coffee.",
     image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
 
   },
   {
     id: 3,
-    name: "Accessories",
+    name: "Kids",
     description: "Coffee mugs, tumblers, and creative tools for coffee lovers.",
     image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
 
   },
   {
     id: 4,
-    name: "Instant Coffee",
+    name: "Men",
     description: "Quick and easy coffee options for busy mornings.",
     image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
   },
   {
     id: 5,
-    name: "Drinks & Snacks",
+    name: "Women",
     description: "Syrups, creamers, and snacks to pair with your coffee.",
     image:["https://www.figma.com/design/eYEUzHPZIkn5xPOKPs8L1I/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit-(Community)?node-id=1-17068&t=x4BTwgzer6Trndyw-4"],
   },

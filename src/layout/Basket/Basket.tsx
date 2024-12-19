@@ -22,7 +22,7 @@ const Basket = () => {
       <Text style={tw`text-xl font-bold mb-4`}>Your Basket</Text>
       <FlatList
         data={cart}
-        renderItem={({ item }) => <ProductCart product={item} />}
+        renderItem={({ item }) => <ProductCart product={item} showQuantity={true}  showRemoveFromCart = {true} showHeart = {true} showAddToCart = {false}/>}
         keyExtractor={(item, index) => `${item.id}-${index}`}
       />
     </SafeAreaView>
