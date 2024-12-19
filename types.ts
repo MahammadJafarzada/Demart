@@ -4,6 +4,7 @@ export type RootStackParamList = {
     OnBoardingScreen: undefined;
     Login: undefined;
     Register: undefined;
+    ForgotPassword:undefined
     Main: undefined;
     ProductDetails:undefined;
     Basket: undefined;

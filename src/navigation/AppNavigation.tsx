@@ -11,6 +11,7 @@ import BottomMenu from "./BottomMenu";
 import Wishlist from "../layout/Wishlist/Wishlist";
 import OnBoardingScreen from "../screens/OnBoarding/OnBoardingScreen";
 import { getItem } from "../utils/asyncStorage";
+import ForgotPassword from "../screens/ForgotPassword/ForgotPassword";
 
 const AppNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -53,6 +54,12 @@ const AppNavigation: React.FC = () => {
           component={Register}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgotPassword}
+          options={{ headerShown: false }}
+        />
+        
         <Stack.Screen
           name="Main"
           component={BottomMenu}
