@@ -21,7 +21,7 @@ const CategoryList: React.FC<CategoryFilterProps> = ({
     >
         <TouchableOpacity
             onPress={() => setSelectedCategory(null)}
-            style={tw`items-center  mx-2`}
+            style={tw`items-center mx-2`}
         >
               <Image
                 source={require("../../assets/clothes.png")} 
