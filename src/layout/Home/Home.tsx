@@ -17,12 +17,17 @@ import { Product } from "../../utils/ProductType";
 import CategoryList from "../../components/CategoryList";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProductCart from "../../components/ProductCart";
+import Banner from "../../components/Banner";
+import banner1 from "../../../assets/banner.png"
 
 const Home = () => {
   const [search, setSearch] = useState<string>("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
+  const banners = [
+    { id: 1, image: banner1, title: "Discount Sale" },
+  ];
   useEffect(() => {
     let filtered = products;
 
@@ -42,6 +47,15 @@ const Home = () => {
   }, [search, selectedCategory]);
   const ListHeader = () => (
       <View>
+        <FlatList
+        data={banners}
+        renderItem={({ item }) => (
+          <Banner image={item.image} title={item.title} />
+        )}
+        keyExtractor={(item) => item.id.toString()}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      />
         <CategoryList
           categories={categories}
           selectedCategory={selectedCategory}
@@ -49,6 +63,8 @@ const Home = () => {
         />
       </View>
   );
+
+
   return (
     <SafeAreaView style={tw`flex-1 bg-white p-2`}>
         <SearchInput
