@@ -45,7 +45,7 @@ const ProductCart: React.FC<ProductCartProps> = ({
     <View style={tw`flex-1 bg-gray-100 rounded-lg shadow-md p-4 mb-4`}>
       <Image
         style={[tw`h-40 rounded-lg  self-center`, { width: "100%" }]}
-        source={{ uri: `${product.images[0]}` }}
+        source={{ uri: product.images[0] }}
       />
       {showHeart && (
         <TouchableOpacity

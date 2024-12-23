@@ -19,21 +19,16 @@ const CategoryList: React.FC<CategoryFilterProps> = ({
       showsHorizontalScrollIndicator={false}
       style={tw`flex-row py-2`}
     >
-        <TouchableOpacity
-            onPress={() => setSelectedCategory(null)}
-            style={tw`items-center mx-2`}
-        >
-              <Image
-                source={require("../../assets/clothes.png")} 
-                style={tw`w-20 h-20`}
-                resizeMode="cover"
-            />
-            <Text
-            style={tw`mt-2 text-sm font-semibold`}
-            >
-            All
-            </Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => setSelectedCategory(null)}
+        style={tw`items-center mx-2`}
+      >
+        <Image
+          source={require("../../assets/clothes.png")}
+          resizeMode="contain"
+        />
+        <Text style={tw`mt-2 text-sm font-semibold`}>All</Text>
+      </TouchableOpacity>
       {categories.map((category, index) => (
         <TouchableOpacity
           key={category.id || `category-${index}`}
@@ -41,15 +36,14 @@ const CategoryList: React.FC<CategoryFilterProps> = ({
           style={tw`items-center mx-2`}
         >
           <View
-            style={tw`w-20 h-20 rounded-full overflow-hidden ${
+            style={tw`rounded-full overflow-hidden ${
               selectedCategory === category.id ? "border-2 border-blue-500" : ""
             }`}
           >
-        <Image
-            source={require("../../assets/clothes.png")}
-            style={tw`w-full h-full`}
-            resizeMode="cover"
-        />
+            <Image
+              source={require("../../assets/clothes.png")}
+              resizeMode="contain"
+            />
           </View>
           <Text
             style={tw`mt-2 text-sm font-semibold ${
