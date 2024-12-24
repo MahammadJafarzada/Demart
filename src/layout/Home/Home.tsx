@@ -26,7 +26,9 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
   const banners = [
-    { id: 1, image: banner1, title: "Discount Sale" },
+    { id: 1, image: banner1, title: "Discount Sale", subtitle: "Now in (product)", buttonText: "Shop Now" },
+    { id: 2, image: banner1, title: "Discount Sale", subtitle: "Now in (product)", buttonText: "Shop Now" },
+    { id: 3, image: banner1, title: "Discount Sale", subtitle: "Now in (product)", buttonText: "Shop Now" },
   ];
   useEffect(() => {
     let filtered = products;
@@ -50,10 +52,12 @@ const Home = () => {
         <FlatList
         data={banners}
         renderItem={({ item }) => (
-          <Banner image={item.image} title={item.title} />
+          <Banner image={item.image} title={item.title} subtitle={item.subtitle} buttonText={item.buttonText}/>
         )}
         keyExtractor={(item) => item.id.toString()}
         horizontal
+        pagingEnabled
+        snapToAlignment="center"
         showsHorizontalScrollIndicator={false}
       />
         <CategoryList
