@@ -13,25 +13,41 @@ interface BannerProps {
   title: string;
   subtitle: string;
   buttonText: string;
+  onPress?: () => void;
 }
 
 const { width } = Dimensions.get("window");
 
-const Banner = ({ image, title, subtitle, buttonText }: BannerProps) => {
+const Banner = ({
+  image,
+  title,
+  subtitle,
+  buttonText,
+  onPress,
+}: BannerProps) => {
   return (
-    <View style={tw`m-2 rounded-lg overflow-hidden`}>
+    <View style={tw`m-3 rounded-2xl overflow-hidden shadow-lg`}>
       <ImageBackground
         source={image}
-        style={[{ width }, tw`h-40 justify-center px-4`]}
-        imageStyle={tw`rounded-lg`}
+        style={[{ width: width - 24 }, tw`h-48 justify-end`]}
+        imageStyle={tw`rounded-2xl`}
         resizeMode="cover"
       >
-        <Text style={tw`text-xl font-bold text-white mb-2`}>{title}</Text>
-        <Text style={tw`text-base text-white mb-4`}>{subtitle}</Text>
-        <TouchableOpacity style={tw`bg-white py-2 px-4 rounded-lg self-start`}>
-          <Text style={tw`text-pink-500 font-bold`}>{buttonText}</Text>
-          
-        </TouchableOpacity>
+        <View style={tw`p-6`}>
+          <Text style={[tw`text-2xl font-bold text-white mb-2`]}>{title}</Text>
+          <Text style={[tw`text-base text-gray-200 mb-6 leading-5`]}>
+            {subtitle}
+          </Text>
+          <TouchableOpacity
+            onPress={onPress}
+            style={tw`bg-white py-3 px-6 rounded-full self-start
+              shadow-sm active:opacity-90`}
+          >
+            <Text style={[tw`text-pink-500 font-bold text-base`]}>
+              {buttonText}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
     </View>
   );
