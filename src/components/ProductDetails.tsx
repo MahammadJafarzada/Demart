@@ -69,6 +69,7 @@ const ProductDetails = () => {
           <Text style={tw`text-lg text-gray-700 mb-2`}>
             ${product.price.toFixed(2)}
           </Text>
+          <Text style={tw`text-xl pb-2`}>Product description</Text>
           <Text style={tw`text-sm text-gray-500`}>{product.description}</Text>
         </View>
       </ScrollView>

@@ -1,9 +1,10 @@
-import React, { useState, useEffect, memo, useRef } from "react";
+import React, { useState, useEffect, memo } from "react";
 import {
   View,
   Keyboard,
   FlatList,
-  Animated,
+  Text,
+  ActivityIndicator,
 } from "react-native";
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -13,38 +14,53 @@ import SearchInput from "../../components/SearchInput";
 import CategoryList from "../../components/CategoryList";
 import ProductCart from "../../components/ProductCart";
 import Banner from "../../components/Banner";
-import Pagination from "../../components/Pagination";
-import banner1 from "../../../assets/banner.png";
+import { banners } from "../../utils/Banner";
+import * as Location from "expo-location";
 
 const Home = () => {
   const [search, setSearch] = useState<string>("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
-  
-  const banners = [
-    {
-      id: 1,
-      image: banner1,
-      title: "Discount Sale",
-      subtitle: "Now in (product)",
-      buttonText: "Shop Now",
-    },
-    {
-      id: 2,
-      image: banner1,
-      title: "Discount Sale",
-      subtitle: "Now in (product)",
-      buttonText: "Shop Now",
-    },
-    {
-      id: 3,
-      image: banner1,
-      title: "Discount Sale",
-      subtitle: "Now in (product)",
-      buttonText: "Shop Now",
-    },
-  ];
+  const [address, setAddress] = useState<string | null>(null); 
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [loadingLocation, setLoadingLocation] = useState<boolean>(true); 
+
+
+  // Fetch Location and Address
+  useEffect(() => {
+    const getLocationAndAddress = async () => {
+      setLoadingLocation(true);
+      try {
+        const { status } = await Location.requestForegroundPermissionsAsync();
+
+        if (status !== "granted") {
+          setErrorMsg("Permission to access location was denied");
+          return;
+        }
+
+        const location = await Location.getCurrentPositionAsync({});
+        
+        const geocode = await Location.reverseGeocodeAsync(location.coords);
+
+        if (geocode.length > 0) {
+          const {city, country } = geocode[0];
+          const formattedAddress = `${city}, ${country}`;
+          setAddress(formattedAddress);
+        } else {
+          setErrorMsg("Unable to fetch address.");
+        }
+      } catch (error) {
+        setErrorMsg("Failed to fetch location or address.");
+      } finally {
+        setLoadingLocation(false); 
+      }
+    };
+
+    getLocationAndAddress();
+  }, []);
+
+  // Filter products
   useEffect(() => {
     let filtered = products;
 
@@ -63,6 +79,24 @@ const Home = () => {
     setFilteredProducts(filtered);
   }, [search, selectedCategory]);
 
+  // Render address or loading/error message
+  const renderAddressInfo = () => {
+    if (loadingLocation) {
+      return <ActivityIndicator size="small" color="#0000ff" />;
+    }
+
+    if (errorMsg) {
+      return <Text style={tw`text-red-500`}>{errorMsg}</Text>;
+    }
+
+    if (address) {
+      return <Text style={tw`text-gray-500`}>{address}</Text>;
+    }
+
+    return <Text>Address not available</Text>;
+  };
+
+  // List Header
   const ListHeader = () => (
     <View>
       <FlatList
@@ -90,6 +124,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={tw`flex-1 bg-white p-4`}>
+      <View style={tw`mb-4`}>{renderAddressInfo()}</View>
       <SearchInput
         search={search}
         setSearch={setSearch}

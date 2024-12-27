@@ -31,6 +31,10 @@
           "useFrameworks": "static"
         }
       }],
+      ["expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(Demart) to use your location."
+        }],
       "@react-native-firebase/app",
       "@react-native-firebase/auth"
     ],
