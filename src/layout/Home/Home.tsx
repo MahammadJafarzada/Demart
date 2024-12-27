@@ -16,16 +16,16 @@ import ProductCart from "../../components/ProductCart";
 import Banner from "../../components/Banner";
 import { banners } from "../../utils/Banner";
 import * as Location from "expo-location";
+import EvilIcons from "@expo/vector-icons/EvilIcons";
 
 const Home = () => {
   const [search, setSearch] = useState<string>("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
-  const [address, setAddress] = useState<string | null>(null); 
+  const [address, setAddress] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [loadingLocation, setLoadingLocation] = useState<boolean>(true); 
-
+  const [loadingLocation, setLoadingLocation] = useState<boolean>(true);
 
   // Fetch Location and Address
   useEffect(() => {
@@ -40,11 +40,11 @@ const Home = () => {
         }
 
         const location = await Location.getCurrentPositionAsync({});
-        
+
         const geocode = await Location.reverseGeocodeAsync(location.coords);
 
         if (geocode.length > 0) {
-          const {city, country } = geocode[0];
+          const { city, country } = geocode[0];
           const formattedAddress = `${city}, ${country}`;
           setAddress(formattedAddress);
         } else {
@@ -53,7 +53,7 @@ const Home = () => {
       } catch (error) {
         setErrorMsg("Failed to fetch location or address.");
       } finally {
-        setLoadingLocation(false); 
+        setLoadingLocation(false);
       }
     };
 
@@ -90,7 +90,12 @@ const Home = () => {
     }
 
     if (address) {
-      return <Text style={tw`text-gray-500`}>{address}</Text>;
+      return (
+        <Text style={tw`flex-row items-center text-gray-500 font-bold text-lg`}>
+          <EvilIcons name="location" size={24} color="black" />
+          {address}
+        </Text>
+        );
     }
 
     return <Text>Address not available</Text>;
@@ -124,7 +129,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={tw`flex-1 bg-white p-4`}>
-      <View style={tw`mb-4`}>{renderAddressInfo()}</View>
+      <View style={tw`flex mb-2`}>{renderAddressInfo()}</View>
       <SearchInput
         search={search}
         setSearch={setSearch}
