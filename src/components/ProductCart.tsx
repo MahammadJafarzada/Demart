@@ -19,6 +19,7 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../redux/reducers/wishlistSlice";
+import { useNavigation } from "@react-navigation/native";
 
 interface ProductCartProps {
   product: Product;
@@ -40,6 +41,8 @@ const ProductCart: React.FC<ProductCartProps> = ({
 }) => {
   const dispatch = useDispatch();
   const wishlist = useSelector((state: RootState) => state.wishlist.items);
+  const navigation = useNavigation<any>();
+
 
   const handleToWishlist = (product: Product) => {
     const isWishlisted = wishlist.find((item) => item.id === product.id);
@@ -54,8 +57,12 @@ const ProductCart: React.FC<ProductCartProps> = ({
     dispatch(addToCart(product));
   };
 
+  const handleNavigateToDetail = () => {
+    navigation.navigate("ProductDetails", { product });
+  };
   return (
-    <View
+    <TouchableOpacity
+    onPress={handleNavigateToDetail}
       style={tw`flex-0.49 bg-white rounded-3xl shadow-xl mb-4 overflow-hidden`}
     >
       <View style={tw`relative`}>
@@ -66,7 +73,7 @@ const ProductCart: React.FC<ProductCartProps> = ({
         {showHeart && (
           <TouchableOpacity
             onPress={() => handleToWishlist(product)}
-            style={tw`absolute top-2 right-2 p-2 rounded-full bg-white/90 backdrop-blur-lg`}
+            style={tw`absolute top-2 right-2 p-2 rounded-full bg-white`}
           >
               <Ionicons
                 name={
@@ -92,7 +99,14 @@ const ProductCart: React.FC<ProductCartProps> = ({
         >
           {product.title}
         </Text>
-
+        <Text
+          style={
+            tw`text-base font-bold text-gray-800 mb-1`
+           }
+          numberOfLines={2}
+        >
+          {product.description}
+        </Text>
         <Text
           style={tw`text-lg text-black font-bold mb-2`}
         >
@@ -133,7 +147,7 @@ const ProductCart: React.FC<ProductCartProps> = ({
           )}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

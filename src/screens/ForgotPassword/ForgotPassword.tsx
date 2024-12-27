@@ -40,11 +40,6 @@ const ForgotPassword = () => {
           style={isLoading ? tw`bg-gray-400` : tw`bg-green-500`}
         />
       </View>
-      <View style={tw`mt-4`}>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text style={tw`text-pink-500 text-center`}>I Already Have an Account</Text>
-        </TouchableOpacity>
-      </View>
     </ScrollView>
   </SafeAreaView>
   )

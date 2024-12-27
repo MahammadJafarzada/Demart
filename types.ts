@@ -13,3 +13,4 @@ export type RootStackParamList = {
 export type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 export type BasketScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Basket'>;
 export type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Main'>;
+export type ProductDetailsProp = NativeStackNavigationProp<RootStackParamList, "ProductDetails">;
